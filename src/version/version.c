@@ -18,13 +18,3 @@ int Sys_GetBuild()
 {
     return BUILD_NUMBER;
 }
-
-const char* Sys_GetBranch()
-{
-    return STRINGIFY(BUILD_BRANCH);
-}
-
-const char* Sys_GetRevision()
-{
-    return STRINGIFY(BUILD_REVISION);
-}

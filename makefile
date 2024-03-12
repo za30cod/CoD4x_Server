@@ -19,8 +19,6 @@ TARGETNAME=cod4x18_dedrun
 # Build system specific information.
 # In git not exist there will be some errors, but nothing critical.
 BUILD_NUMBER=$(shell git rev-list --count HEAD)
-BUILD_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
-BUILD_REVISION=$(shell git rev-parse HEAD)
 
 ifneq ($(OS),Windows_NT)
 VERSION=$(shell grep '\#define SYS_COMMONVERSION' src/version/version.c | cut -d' ' -f3)
@@ -29,14 +27,6 @@ endif
 
 ifeq ($(BUILD_NUMBER), )
 BUILD_NUMBER:=0
-endif
-
-ifeq ($(BUILD_BRANCH), )
-BUILD_BRANCH:=no-branch
-endif
-
-ifeq ($(BUILD_REVISION), )
-BUILD_REVISION:=no-revision
 endif
 
 ###################
@@ -53,12 +43,12 @@ else
 DCFLAGS=-fno-pie -O1 -DNDEBUG
 endif
 
-WIN_LFLAGS=-m32 -g -Wl,--nxcompat,--stack,0x800000 -mwindows -static-libgcc -static -lm
+WIN_LFLAGS=-s -m32 -g -Wl,--nxcompat,--stack,0x800000 -mwindows -static-libgcc -static -lm
 WIN_LLIBS=tomcrypt mbedtls mbedcrypto mbedx509 ws2_32 wsock32 iphlpapi gdi32 winmm crypt32 stdc++
-LINUX_LFLAGS=-m32 -g -static-libgcc -rdynamic -Wl,-rpath=./
+LINUX_LFLAGS=-s -m32 -g -static-libgcc -rdynamic -Wl,-rpath=./
 LINUX_LLIBS=tomcrypt mbedtls mbedcrypto mbedx509 dl pthread m stdc++
 BSD_LLIBS=tomcrypt mbedtls mbedcrypto mbedx509 pthread m execinfo stdc++
-COD4X_DEFINES=COD4X18UPDATE BUILD_NUMBER=$(BUILD_NUMBER) BUILD_BRANCH=$(BUILD_BRANCH) BUILD_REVISION=$(BUILD_REVISION)
+COD4X_DEFINES=COD4X18UPDATE BUILD_NUMBER=$(BUILD_NUMBER)
 
 ########################
 # Setup directory names.

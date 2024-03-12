@@ -646,14 +646,12 @@ static void Com_InitCvars( void ){
     com_fixedtime = Cvar_RegisterInt("fixedtime", 0, 0, 1000, 0x80, "Use a fixed time rate for each frame");
     com_maxFrameTime = Cvar_RegisterInt("com_maxFrameTime", 100, 50, 1000, 0, "Time slows down if a frame takes longer than this many milliseconds");
     com_animCheck = Cvar_RegisterBool("com_animCheck", qfalse, 0, "Check anim tree");
-    s = va("%s %s %s build %i %s", GAME_STRING,Q3_VERSION,PLATFORM_STRING, Sys_GetBuild(), __DATE__);
+    s = va("%s %s build %i %s", GAME_STRING,PLATFORM_STRING, Sys_GetBuild(), __DATE__);
 
-    com_version = Cvar_RegisterString ("version", s, CVAR_ROM | CVAR_SERVERINFO , "Game version");
-    com_shortversion = Cvar_RegisterString ("shortversion", Q3_VERSION, CVAR_ROM | CVAR_SERVERINFO , "Short game version");
+    com_version = Cvar_RegisterString ("version", s, CVAR_ROM | CVAR_SERVERINFO, "Game version");
+    com_shortversion = Cvar_RegisterString ("shortversion", Q3_VERSION, CVAR_ROM | CVAR_SERVERINFO, "Short game version");
 
     Cvar_RegisterInt ("build", Sys_GetBuild(), Sys_GetBuild(), Sys_GetBuild(), CVAR_ROM | CVAR_SERVERINFO, "Count of SCM commits since project has been started");
-    Cvar_RegisterString("branch", Sys_GetBranch(), CVAR_ROM | CVAR_SERVERINFO, "Name of SCM branch");
-    Cvar_RegisterString("revision", Sys_GetRevision(), CVAR_ROM | CVAR_SERVERINFO, "Hash of SCM revision");
     useFastFile = Cvar_RegisterBool ("useFastFiles", qtrue, 16, "Enables loading data from fast files");
     //MasterServer
     //AuthServer
@@ -691,7 +689,7 @@ void Com_Init(char* commandLine){
     }
     if(com_errorEntered) Com_Error(ERR_FATAL,"Recursive error");
 
-    Com_Printf(CON_CHANNEL_SYSTEM,"%s %s %s build %i %s\n", GAME_STRING,Q3_VERSION,PLATFORM_STRING, Sys_GetBuild(), __DATE__);
+    Com_Printf(CON_CHANNEL_SYSTEM,"%s %s build %i %s\n", GAME_STRING,PLATFORM_STRING, Sys_GetBuild(), __DATE__);
 
 
     Cbuf_Init();

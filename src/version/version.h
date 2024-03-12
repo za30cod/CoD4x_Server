@@ -10,9 +10,3 @@ const char* Sys_GetCommonVersionString();
 
 // Returns server build number - count of commits to SCM branch.
 int Sys_GetBuild();
-
-// Returns name of SCM branch.
-const char* Sys_GetBranch();
-
-// Returns revision string of SCM branch.
-const char* Sys_GetRevision();

@@ -121,7 +121,7 @@ void Sys_DumpCrash(int signal,struct sigcontext *ctx)
 	long unsigned size = sizeof(hash);
 	
 	Com_Printf(CON_CHANNEL_SYSTEM, "This program has crashed with signal: %s\n", strsignal(signal));
-	Com_Printf(CON_CHANNEL_SYSTEM, "The current Gameversion is: %s %s %s build %i %s\n", GAME_STRING,Q3_VERSION,PLATFORM_STRING, BUILD_NUMBER, __DATE__); 
+	Com_Printf(CON_CHANNEL_SYSTEM, "The current Gameversion is: %s %s build %i %s\n", GAME_STRING,PLATFORM_STRING, BUILD_NUMBER, __DATE__); 
 	Sec_HashFile(SEC_HASH_SHA256, Sys_ExeFile(), hash, &size, qfalse);
 	//Q_strncpyz(hash, "File Hashing has not been implemented yet", sizeof(hash));
 	hash[64] = '\0';
